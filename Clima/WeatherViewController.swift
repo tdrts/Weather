@@ -32,6 +32,21 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
 
+    @IBAction func moreInfo(_ sender: UIButton) {
+        
+        
+            var message = String(weatherDataModel.city) + "\n Temperatura este de " +   String(weatherDataModel.temperature)
+        
+            let alert = UIAlertController(title: "Mai multe informații", message: message, preferredStyle: .alert)
+        
+        
+            let closeAlert  = UIAlertAction(title: "Inchide", style: .default, handler: nil)
+        
+            alert.addAction(closeAlert)
+        
+            present(alert, animated: true, completion: nil)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +111,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             updateWeatherFormat(temperature: tempResults)
             
             temp = Int(tempResults)
+            
+            print(json)
         
             weatherDataModel.city = json["name"].stringValue
         
@@ -125,8 +142,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         cityLabel.text = weatherDataModel.city
         temperatureLabel.text = String(weatherDataModel.temperature) + "°C"
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
-        
-        
         
     }
     
@@ -202,11 +217,21 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             updateWeatherFormat(temperature: Double(temp))
         } else {
             
-            updateWeatherFormat(temperature: (Double(temp * ( 9 / 5 )  + 32)))
-            temperatureLabel.text = String(weatherDataModel.temperature) + "°F"
+            updateWeatherFormatF(temperature: (Double(temp)))
+            
             
         }
         
+    }
+    
+    func updateWeatherFormatF(temperature : Double) {
+        
+        weatherDataModel.temperature = Int((temperature - 273) * ( 9 / 5 )  + 32)
+        print(String(weatherDataModel.temperature))
+        temperatureLabel.text = String(weatherDataModel.temperature) + "°F"
+        
+        
+        //updateUIWithWeatherData()
     }
 
     
