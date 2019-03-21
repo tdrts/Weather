@@ -20,7 +20,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     let APP_ID = "f094b4efd63c1afe6b983fd727805199"
     
     var temp : Int = 0
-
+    
     //instance variables
     
     let locationManager = CLLocationManager()
@@ -35,12 +35,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     @IBAction func moreInfo(_ sender: UIButton) {
         
         
-            var message = String(weatherDataModel.city) + "\n Temperatura este de " +   String(weatherDataModel.temperature)
+            let message = "\n Temperatura actuală este de " +   String(weatherDataModel.temperature) + "°C" + "\n \n Temperatura maximă pentru ziua de azi este de " + String(weatherDataModel.maxTemperature - 273) + "°C" + "\n \n Temperatura minimă pentru ziua de azi este de " + String(weatherDataModel.minTemperature - 273) + "°C" + " \n \n" + "Presiunea este de " + String(Int(Double(weatherDataModel.pressure) * 0.75)) + " mmHG" + "\n \n Umiditatea este " + String(weatherDataModel.humidity) + "%"
+        
         
             let alert = UIAlertController(title: "Mai multe informații", message: message, preferredStyle: .alert)
         
         
-            let closeAlert  = UIAlertAction(title: "Inchide", style: .default, handler: nil)
+            let closeAlert  = UIAlertAction(title: "Închide", style: .default, handler: nil)
         
             alert.addAction(closeAlert)
         
@@ -115,7 +116,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             print(json)
         
             weatherDataModel.city = json["name"].stringValue
-        
+            
+            weatherDataModel.maxTemperature = json["main"]["temp_max"].intValue
+            
+            weatherDataModel.minTemperature = json["main"]["temp_min"].intValue
+            
+            weatherDataModel.pressure = json["main"]["pressure"].intValue
+            
+            weatherDataModel.humidity = json["main"]["humidity"].intValue
+            
             weatherDataModel.condition = json["weather"][0]["id"].intValue
         
             weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
@@ -142,6 +151,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         cityLabel.text = weatherDataModel.city
         temperatureLabel.text = String(weatherDataModel.temperature) + "°C"
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+        
+      
+        
         
     }
     

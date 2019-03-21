@@ -14,6 +14,10 @@ class WeatherDataModel {
     var condition = 0
     var city = ""
     var weatherIconName = ""
+    var maxTemperature = 0
+    var minTemperature = 0
+    var pressure = 0
+    var humidity = 0
     
     
     //weather condition image
