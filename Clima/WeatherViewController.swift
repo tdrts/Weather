@@ -1,6 +1,5 @@
 //
 //  ViewController.swift
-//  WeatherApp
 //
 //
 
@@ -143,9 +142,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     //UI Updates
    
     
-    
-    
-    
     func updateUIWithWeatherData() {
         
         cityLabel.text = weatherDataModel.city
@@ -153,8 +149,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
         
       
-        
-        
     }
     
     
@@ -162,10 +156,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     
     
     //Location Manager Delegate Methods
-    
-    
-    
-
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
