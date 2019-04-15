@@ -1,6 +1,6 @@
 //
 //  WeatherDataModel.swift
-//  WeatherApp
+// 
 //
 //
 

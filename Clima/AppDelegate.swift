@@ -1,8 +1,6 @@
 //
 //  AppDelegate.swift
-//  Clima
 //
-
 //
 
 import UIKit

@@ -1,6 +1,5 @@
 //
 //  ChangeCityViewController.swift
-//  WeatherApp
 //
 //
 
@@ -26,13 +25,29 @@ class ChangeCityViewController: UIViewController {
     @IBAction func getWeatherPressed(_ sender: AnyObject) {
         
         
+        if changeCityTextField.text!.isEmpty {
+            
+            print("Nimic scris")
+            
+            let alert = UIAlertController(title: "", message: "Introdu numele orașului", preferredStyle: .alert)
+            
+            
+            let closeAlert  = UIAlertAction(title: "Închide", style: .default, handler: nil)
+            
+            alert.addAction(closeAlert)
+            
+            present(alert, animated: true, completion: nil)
+            
+        } else
         
-        
-        let cityName = changeCityTextField.text!
+        {
+            let cityName = changeCityTextField.text!
         
         delegate?.userAddedANewCityName(city: cityName)
         
-        self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+            
+        }
         
         
     }

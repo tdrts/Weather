@@ -37,6 +37,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             let message = "\n Temperatura actuală este de " +   String(weatherDataModel.temperature) + "°C" + "\n \n Temperatura maximă pentru ziua de azi este de " + String(weatherDataModel.maxTemperature - 273) + "°C" + "\n \n Temperatura minimă pentru ziua de azi este de " + String(weatherDataModel.minTemperature - 273) + "°C" + " \n \n" + "Presiunea este de " + String(Int(Double(weatherDataModel.pressure) * 0.75)) + " mmHG" + "\n \n Umiditatea este " + String(weatherDataModel.humidity) + "%"
         
         
+        
+        
             let alert = UIAlertController(title: "Mai multe informații", message: message, preferredStyle: .alert)
         
         
@@ -232,8 +234,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         print(String(weatherDataModel.temperature))
         temperatureLabel.text = String(weatherDataModel.temperature) + "°F"
         
-        
-        //updateUIWithWeatherData()
     }
 
     
