@@ -1,2 +1,2 @@
 ## Weather app for iOS that provides current conditions and various temperature information
-Using UIKit, Alamofire, SwiftyJSON, and SVProgressHUD
+Using UIKit, CoreLocation, Alamofire, SwiftyJSON, and SVProgressHUD
